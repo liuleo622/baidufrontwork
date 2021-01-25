@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>frameAnimation</title>
+        <meta charset="utf-8">
+    </head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .gogo{
+            background: url('images/erik.jpg');
+            background-position: 0 0px;
+            width: 480px;
+            height: 480px;
+            margin: 0 auto;
+        }
+    </style>
+    <body>
+        <div class="gogo">
+            
+        </div>
+    </body>
+    <script>
+        const div = document.querySelector('div');
+        // const style = document.querySelector('.gogo')
+        let count = 0;
+        let flag = 1;
+        function go() {
+            pos = count + 'px';
+            div.style.backgroundPosition = "0"+ " " + pos;
+            console.log(pos);
+            if (flag == 1) {
+                count -= 480;
+                if (count > -7680) {
+                    i = window.setTimeout(go, 70);
+                }
+                else{
+                    window.clearTimeout(i);
+                    flag = 0;
+                    i = window.setTimeout(go, 70);
+                }
+            }else{
+                count += 480;
+                if (count < 0) {
+                    i = window.setTimeout(go, 70);
+                }
+                else{
+                    window.clearTimeout(i);
+                    flag = 1;
+                    i = window.setTimeout(go, 70);
+                }
+            }
+            
+        }
+        go();
+    </script>
+</html>

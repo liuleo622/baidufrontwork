@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+    <style>
+        select {
+            display: none;
+        }
+    </style>
+</head>
+<body>            
+    <label>
+        <input id="school" name="status" type="radio">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio">
+        Company
+    </label>
+
+    <select id="school-select">        
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">        
+        <option>百度</option>
+        <option>爱奇艺</option>        
+    </select>
+</body>
+<script>
+    // const school = document.querySelector('#school');
+    // const company = document.querySelector('#company');
+    const input = document.querySelectorAll('input');   //将input元素全部选择，并存入类数组对象‘input’
+    const schoolList = document.querySelector('#school-select');
+    const companyList = document.querySelector('#company-select');
+    function displayIt(e) {
+        let id = e.target.id;
+        if (id === 'school') {
+            schoolList.style.display = 'flex';
+            companyList.style.display = 'none'
+        }
+        else if (id === 'company'){
+            companyList.style.display = 'flex';
+            schoolList.style.display = 'none';
+        }
+        
+    }
+    for (let i = 0; i < input.length; i++) {
+        input[i].addEventListener('click',displayIt);   //遍历‘input’数组，为‘input’类数组中的每个对象添加一个事件监听器
+    }
+    // school.onclick = displayIt;
+    // company.onclick = displayIt
+
+</script>
+
+</html>

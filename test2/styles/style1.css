@@ -1,0 +1,32 @@
+/* *{
+    margin: 0px;
+    padding: 0px;
+} */
+html{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.head1{
+    display: inline-block;
+    font-weight: 900;
+    margin-right: 6px;
+    margin-bottom: 0px;
+}
+
+.content1{
+    display: inline-block;
+    margin-right: 30px;
+    margin-bottom: 0px;
+    font-weight: 500;
+}
+
+p{
+    margin-top: 2px;
+    font-weight: 500;
+}
+
+a{
+    display: inline-block;
+    margin-right: 30px;
+    margin-bottom: 0px;
+}

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>百度学院22-24字符串操作</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div>
+            <label>String A:
+                <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+            </label>
+            <textarea id="str-a"></textarea>
+            <label>String B:
+                <input id="radio-b" type="radio" name="str-obj" value="b">
+            </label>
+            <textarea id="str-b"></textarea>        
+            <label>Num A：<input id="num-a" type="number" value="0"></label>
+            <label>Num B：<input id="num-b" type="number" value="1"></label>
+        </div>
+        <div id="bts">
+            <button id="bt1">获取当前选中输入的内容长度</button>
+            <button id="bt2">当前选中输入中的第3个字符</button>
+            <button id="bt3">把两个输入框的文字连接在一起输出（concat）</button>
+            <button id="bt4">输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+            <button id="bt5">输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+            <button id="bt6">使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+            <button id="bt7">当前选中输入框的行数</button>
+            <button id="bt8">使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+            <button id="bt9">把所选输入框中的内容全部转为大写</button>
+            <button id="bt10">把所选输入框中的内容全部转为小写</button>
+            <button id="bt11">把所选输入框中内容的半角空格全部去除</button>
+            <button id="bt12">把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+        </div>
+        <p id="result"></p>
+    </body>
+    <script>
+        const bts = document.querySelector('#bts');
+        const raA = document.querySelector('#radio-a');
+        const raB = document.querySelector('#radio-b');
+        const inA = document.querySelector('#str-a');
+        const inB = document.querySelector('#str-b');
+        const numA = document.querySelector('#num-a');
+        const numB = document.querySelector("#num-b");
+        const para = document.querySelector('#result');
+        let checkFlag = 0;
+        let id;
+        bts.addEventListener('click', function (e) {
+            id = e.target.id;
+            switch (id) {
+                case 'bt1':
+                    lengths();
+                    break;
+                
+                case 'bt2':
+                    thirdChar();
+                    break;
+            
+                case 'bt3':
+                    concatAB();
+                    break;
+
+                case 'bt4':
+                    BinA();
+                    break;
+                
+                case 'bt5':
+                    lastAinB();
+                    break;
+        
+                case 'bt6':
+                    sliceStr();
+                    break;
+
+                case 'bt7':
+                    rowsX();
+                    break;
+            
+                case 'bt8':
+                    subStr();
+                    break;
+            
+                case 'bt9':
+                    toUpper();
+                    break;
+            
+                case 'bt10':
+                    toLower();
+                    break;
+            
+                case 'bt11':
+                    deleteSpace();
+                    break;
+
+                case 'bt12':
+                    replaceAWithB();
+                    break;
+                
+                default:
+                    break;
+            }
+        });
+
+
+        function isCheched() {
+            if (raA.checked) {
+                return 0;
+            }
+            else if (raB.checked) {
+                return 1;
+            }
+            else {
+                console.log('未选择输入框');
+                return 2;
+            }
+        }
+
+        function lengths(params) {
+            checkFlag = isCheched();
+            let text;
+            let textLength;
+            if (checkFlag !== 2) {
+                if (checkFlag == 0) {
+                    text = inA.value;   
+                }
+                else if (checkFlag ==1) {
+                    text = inB.value;
+                }
+                textLength = text.length;
+                para.innerText = "字符串： "+ text + " 长度是： "+ textLength;
+            }
+            else if (checkFlag == 2) {
+                para.innerText = '未选择输入框';
+            }
+
+        }
+
+        function thirdChar() {
+            checkFlag = isCheched();
+            let text;
+            let char;
+            if (checkFlag != 2) {
+                if (checkFlag == 0) {
+                    text = inA.value;
+                }
+                else if (checkFlag ==1) {
+                    text = inB.value;
+                }
+                char = text[2];
+                para.innerText = '选中字符串第三个字符是： ' + char;
+            }
+            else if (checkFlag == 2) {
+                para.innerText = '未选择输入框';
+            }
+        }
+
+        function concatAB() {
+            let textA = inA.value;
+            let textB = inB.value;
+            let text = textA.concat(textB);
+            para.innerText = text;
+
+        }
+
+        function BinA() {
+            let strA = inA.value;
+            let strB = inB.value;
+            let index = strA.indexOf(strB);
+            para.innerText = index;
+        }
+
+        function lastAinB() {
+            let strA = inA.value;
+            let strB = inB.value;
+            let index = strB.lastIndexOf(strA);
+            para.innerText = index;
+        }
+
+        function sliceStr() {
+            let start = numA.value;
+            let end = numB.value;
+            checkFlag = isCheched();
+            let text;
+            let choosedStr;
+            if (checkFlag != 2) {
+                if (checkFlag == 0) {
+                    text = inA.value;
+                }
+                else if (checkFlag ==1) {
+                    text = inB.value;
+                }
+                choosedStr = text.slice(start, end);
+                para.innerText = '子字符串为：' + choosedStr;
+            }
+            else if (checkFlag == 2) {
+                para.innerText = '未选择输入框';
+            }
+        }
+
+        function subStr() {
+            let start = numA.value;
+            let end = numB.value;
+            checkFlag = isCheched();
+            let text;
+            let choosedStr;
+            if (checkFlag != 2) {
+                if (checkFlag == 0) {
+                    text = inA.value;
+                }
+                else if (checkFlag ==1) {
+                    text = inB.value;
+                }
+                choosedStr = text.substr(start, end);
+                para.innerText = '子字符串为：' + choosedStr;
+            }
+            else if (checkFlag == 2) {
+                para.innerText = '未选择输入框';
+            }
+        }
+
+        function rowsX() {
+            checkFlag = isCheched();
+            let row;
+            let text;
+            if (checkFlag != 2) {
+                if (checkFlag == 0) {
+                    text = inA.value;
+                }
+                else if (checkFlag ==1) {
+                    text = inB.value;
+                }
+                row = text.split("\n").length - 1;
+                para.innerText = '当前输入框行数为：' + row;
+            }
+            else if (checkFlag == 2) {
+                para.innerText = '未选择输入框';
+            }
+        }
+
+        function toUpper() {
+            checkFlag = isCheched();
+            let text;
+            if (checkFlag != 2) {
+                if (checkFlag == 0) {
+                    text = inA.value;
+                }
+                else if (checkFlag ==1) {
+                    text = inB.value;
+                }
+                text = text.toUpperCase();
+                para.innerText =  text;
+            }
+            else if (checkFlag == 2) {
+                para.innerText = '未选择输入框';
+            }
+        }
+
+        function toLower() {
+            checkFlag = isCheched();
+            let text;
+            if (checkFlag != 2) {
+                if (checkFlag == 0) {
+                    text = inA.value;
+                }
+                else if (checkFlag ==1) {
+                    text = inB.value;
+                }
+                text = text.toLowerCase();
+                para.innerText =  text;
+            }
+            else if (checkFlag == 2) {
+                para.innerText = '未选择输入框';
+            }
+        }
+
+        function deleteSpace() {
+            checkFlag = isCheched();
+            let text;
+            if (checkFlag != 2) {
+                if (checkFlag == 0) {
+                    text = inA.value;
+                }
+                else if (checkFlag ==1) {
+                    text = inB.value;
+                }
+                while(text.indexOf(' ') !== -1){
+                    text = text.replace(' ', '');
+                    para.innerText =  text;
+                }
+            }
+            else if (checkFlag == 2) {
+                para.innerText = '未选择输入框';
+            }
+        }
+
+        function replaceAWithB() {
+            let strA = inA.value;
+            let strB = inB.value;
+            strA = strA.replace(/a/g, strB);
+            para.textContent = strA;
+            
+        }
+    </script>
+</html>

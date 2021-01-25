@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>百度17-18编码小游戏</title>
+        <meta charset="utf-8">
+        <style type="text/css">
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html{
+                background: cornsilk;
+            }
+            body{
+                margin: 0 auto;
+                width: 500px;
+                background-color: cornflowerblue;
+            }
+            td{
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                border: 2px solid yellowgreen;
+                margin-left: -2px;
+                margin-bottom: -2px;
+                margin-top: -2px;
+            }
+
+            tr :nth-of-type(1){
+                background-color: rgb(92, 122, 30);
+            }
+
+            tfoot td{
+                background-color: rgb(85, 114, 28);
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>3的游戏</h2>
+        <h2>ninenine</h2>
+        <table>
+        </table>
+    </body>
+    <script>
+        //三的游戏，1-100，3 或 3 的倍数输出‘PA’，其他输出数字
+        function threeGame() {
+            for (let i = 1; i <= 100; i++) {
+                let lef = i % 3;
+                if (lef === 0) {
+                    console.log('PA');
+                } else {
+                    console.log(i);
+                }
+            }
+        }
+        
+        //用 js 生成一个九九乘法表
+        function ninenine() {
+            const table = document.querySelector('table');
+            for (let i = 1; i < 10; i++) {
+                const tr = document.createElement('tr');
+                const tdh = document.createElement('td');
+                tdh.textContent = i ;
+                tr.appendChild(tdh);
+                for (let j = 1; j <= i ;j++) {
+                    const td = document.createElement('td');
+                    td.textContent = i * j;
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            }
+            const tf = document.createElement('tfoot');
+            for(let k = 0; k < 10; k++){
+                const tdf = document.createElement('td');
+                tdf.textContent = k;
+                tf.appendChild(tdf);
+            }
+            table.appendChild(tf);
+        }
+        ninenine();
+
+
+
+    </script>
+</html>

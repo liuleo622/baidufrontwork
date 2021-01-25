@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>百度20-21天</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <input id="name" type="text">
+        <button id="submit-btn">Submit</button>
+    </body>
+    <script>
+        const input = document.querySelector('#name');
+        const subBtn = document.querySelector('#submit-btn');
+        function logName(){
+            let name = input.value;
+            console.log(name);
+            input.value = '';   
+        }
+
+        function isEnter(e){
+            let keyNum = e.which;
+            // console.log(keyNum);
+            if (keyNum == 13) {
+                logName();
+            }
+            else if (keyNum == 27) {
+                input.value = '';
+            }
+        }
+        subBtn.onclick = logName;
+        input.onkeydown = isEnter;
+
+
+    </script>
+</html>

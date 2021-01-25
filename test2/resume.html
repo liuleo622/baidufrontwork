@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>个人简历</title>
+        <link rel="stylesheet" href="styles/style3.css">
+    </head>
+    <body>
+        <h1>简历</h1>
+        <button id="hobit">点击看看我的特殊爱好</button>
+        <div>
+            <h2>基本信息</h2>
+            <span class="head1">姓名</span>
+            <span class="content1">张三</span>
+            <span class="head1">性别</span>
+            <span class="content1">张三</span>
+            <span class="head1">应聘职位</span>
+            <span class="content1">Web前端工程师</span>
+        </div>
+        <div>
+            <h2>联系方式</h2>
+            <span class="head1">手机</span>
+            <span class="content1">12312341234</span>
+            <span class="head1">Email</span>
+            <a href="joinefe@baidu.com">joinefe@baidu.com</a>
+            <span class="head1">个人主页</span>
+            <a href="github.com">Github</a>
+        </div>
+        <div>
+            <h2>能力描述</h2>
+            <span class="head1">技术能力</span>
+            <p>熟练掌握HTML</p><br>
+            <span class="head1">综合能力</span>
+            <p>主动积极</p>
+        </div>
+        <div>
+            <h2>教育经历</h2>
+            <span class="head1">本科</span>
+            <p>小薇</p><br>
+            <span class="head1">研究生</span>
+            <p>大斌</p>
+        </div>
+        <div>
+            <h2>项目经历</h2>
+            <span class="head1">小度小度</span>
+            <p>作为ajsd参与了asd的开发</p><br>
+            <span class="head1">SAN Doc</span>
+            <p>作为askljd参与了jsah的编写</p>
+        </div>
+    </body>
+    <script>
+        function sayHello(){
+            let time = new Date();
+            let hour = time.getHours();
+            if (0 < hour && hour <= 5) {
+                alert('凌晨好！');
+            }else if (5 < hour && hour <=11){
+                alert('早上好！');
+            } else if (11 < hour && hour <=13){
+                alert('中午好！');
+            } else if (13 < hour && hour <=19){
+                alert('下午好！');
+            }else{
+                alert('晚上好！');
+            }
+            console.log(hour);
+        }
+
+        sayHello();     
+    </script>
+</html>

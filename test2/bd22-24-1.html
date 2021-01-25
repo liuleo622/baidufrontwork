@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>数字运算</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div>
+            <label>Number A:<input id="radio-a" type="radio" name="math-obj" value="a"></label><input id="num-a" type="text">
+            <label>Number B:<input id="radio-b" type="radio" name="math-obj" value="b"></label><input id="num-b" type="text">
+        </div>
+        <div id="buttons">
+            <button id="bt1">判断当前选中的输入框输入内容是否为数字</button>
+            <button id="bt2">把 A 四舍五入为 B 个小数位数的数字</button>
+            <button id="bt3">当前选中数字的绝对值</button>
+            <button id="bt4">对当前选中的数字进行上舍入</button>
+            <button id="bt5">对当前选中的数字进行下舍入</button>
+            <button id="bt6">把当前选中的数字四舍五入为最接近的整数</button>
+            <button id="bt7">返回 A 和 B 中的最高值</button>
+            <button id="bt8">返回 A 和 B 中的最低值</button>        
+        </div>
+        <p id="result"></p>
+    </body>
+    <script>
+        const raA = document.querySelector('#radio-a');
+        const raB = document.querySelector('#radio-b');
+        const inA = document.querySelector('#num-a');
+        const inB = document.querySelector('#num-b');
+        const bts = document.querySelector('#buttons'); 
+        const para = document.querySelector('p');
+        bts.addEventListener('click', function (e) {
+            id = e.target.id;
+            switch (id) {
+                case 'bt1':
+                    judge();
+                    break;
+
+                case 'bt2':
+                    toFixed();
+                    break;
+                
+                case 'bt3':
+                    abs();
+                    break;
+
+                case 'bt4':
+                    upround();
+                    break;
+
+                case 'bt5':
+                    floor();
+                    break;
+
+                case 'bt6':
+                    round();
+                    break;
+
+                case 'bt7':
+                    max();
+                    break;
+
+                case 'bt8':
+                    min();
+                    break;
+
+                default:
+                    break;
+            }
+        });
+
+
+        function judge() {
+            let text;
+            let flag = 1;
+            if (raA.checked) {
+                text = inA.value;
+            }else if(raB.checked){
+                text = inB.value;
+            }else{
+                para.innerText = '请选择一个元素';
+                flag = 0;
+            }
+
+            console.log(text);
+            value = Number(text);
+            if (flag == 1) {
+                if (Number.isNaN(value)) {
+                console.log('请输入数字！');
+                para.innerText = '请输入数字！';
+                }
+                else{
+                    para.innerText = value +  " 是一个数字";
+                }
+            }
+        }
+
+        function judgeInFun(fir, sec) {
+            if (Number.isNaN(fir) || Number.isNaN(sec)) {
+                para.innerText = '请检查输入';
+                return 0;
+            }
+            else{
+                return 1;
+            }
+        }
+
+        function toFixed() {
+            let num = Number(inA.value);
+            let bit = Number(inB.value);
+            let flag = judgeInFun(num, bit);
+            if (flag == 1) {
+                num = num.toFixed(bit);
+                para.innerText = '运算结果是： '  + num;
+            }
+            else{
+                console.log('请输入正确的数字！');
+            }
+        }
+
+        function ischecked() {
+            if (raA.checked){
+                return 0;
+            }
+            else if (raB.checked){
+                return 1;
+            }
+            else{
+                para.innerText = '请选择一个数字'
+                return 3;
+            }
+        }
+
+        function abs() {
+            let numa = Number(inA.value);
+            let numb = Number(inB.value);
+            let flag = judgeInFun(numa, numb);
+            let checkflag = ischecked();
+            //console.log(checkflag);
+            if (flag == 0){
+                console.log('请输入正确的数字！');
+            }
+            else if (checkflag == 0) {
+                numa = Math.abs(numa)
+                para.innerText = '运算结果是： '  + numa;
+            }
+            else if (checkflag == 1){
+                numb = Math.abs(numb);
+                para.innerText = '运算结果是： '  + numb;
+            }
+            else{
+                console.log('选择一个数字');
+            }
+        }
+
+        function upround() {
+            let numa = Number(inA.value);
+            let numb = Number(inB.value);
+            let flag = judgeInFun(numa, numb);
+            let checkflag = ischecked();
+            if (flag == 0){
+                console.log('请输入正确的数字！');
+            }
+            else if (checkflag == 0) {
+                numa = Math.ceil(numa)
+                para.innerText = '运算结果是： '  + numa;
+            }
+            else if (checkflag == 1){
+                numb = Math.ceil(numb);
+                para.innerText = '运算结果是： '  + numb;
+            }
+            else{
+                console.log('选择一个数字');
+            }
+        }
+
+        function floor() {
+            let numa = Number(inA.value);
+            let numb = Number(inB.value);
+            let flag = judgeInFun(numa, numb);
+            let checkflag = ischecked();
+            if (flag == 0){
+                console.log('请输入正确的数字！');
+            }
+            else if (checkflag == 0) {
+                numa = Math.floor(numa)
+                para.innerText = '运算结果是： '  + numa;
+            }
+            else if (checkflag == 1){
+                numb = Math.floor(numb);
+                para.innerText = '运算结果是： '  + numb;
+            }
+            else{
+                console.log('选择一个数字');
+            }
+        }
+
+        function round() {
+            let numa = Number(inA.value);
+            let numb = Number(inB.value);
+            let flag = judgeInFun(numa, numb);
+            let checkflag = ischecked();
+            if (flag == 0){
+                console.log('请输入正确的数字！');
+            }
+            else if (checkflag == 0) {
+                numa = Math.round(numa)
+                para.innerText = '运算结果是： '  + numa;
+            }
+            else if (checkflag == 1){
+                numb = Math.round(numb);
+                para.innerText = '运算结果是： '  + numb;
+            }
+            else{
+                console.log('选择一个数字');
+            }
+        }
+
+        function max() {
+            let numa = Number(inA.value);
+            let numb = Number(inB.value);
+            let flag = judgeInFun(numa, numb);
+            if (flag == 1) {
+                num = Math.max(numa, numb);
+                para.innerText = '运算结果是： '  + num;
+            }
+            else{
+                console.log('请输入正确的数字！');
+            }
+        }
+
+        function min() {
+            let numa = Number(inA.value);
+            let numb = Number(inB.value);
+            let flag = judgeInFun(numa, numb);
+            if (flag == 1) {
+                num = Math.min(numa, numb);
+                para.innerText = '运算结果是： '  + num;
+            }
+            else{
+                console.log('请输入正确的数字！');
+            }
+        }
+        
+    </script>
+</html>
